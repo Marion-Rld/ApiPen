@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Pen index{% endblock %}
+
+{% block body %}
+    <h1>Pen index</h1>
+
+    <a href="{{ path('app_pen_new') }}">Create new</a>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Description</th>
+                <th>Ref</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for pen in pens %}
+            <tr>
+                <td>{{ pen.id }}</td>
+                <td>{{ pen.name }}</td>
+                <td>{{ pen.price }}</td>
+                <td>{{ pen.description }}</td>
+                <td>{{ pen.ref }}</td>
+                <td>
+                    <a href="{{ path('app_pen_show', {'id': pen.id}) }}">show</a>
+                    <a href="{{ path('app_pen_edit', {'id': pen.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}
